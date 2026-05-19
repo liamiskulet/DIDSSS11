@@ -1,0 +1,22 @@
+{
+  "name": "didsss11",
+  "version": "1.0.0",
+  "description": "DIDSSS11 Chat Website",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve .",
+    "build": "echo Building DIDSSS11"
+  },
+  "keywords": [
+    "chat",
+    "website",
+    "messaging",
+    "didsss11"
+  ],
+  "author": "Liam",
+  "license": "MIT",
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}
