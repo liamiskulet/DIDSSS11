@@ -1,18 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DIDSSS Chat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+    <div class="sidebar">
+      <h2>Online Users</h2>
+
+      <div class="user-list" id="userList">
+        <div class="user-card">
+          <div class="status-dot"></div>
+          <span>Alex</span>
+        </div>
+
+        <div class="user-card">
+          <div class="status-dot"></div>
+          <span>Sophia</span>
+        </div>
+
+        <div class="user-card">
+          <div class="status-dot"></div>
+          <span>Jordan</span>
+        </div>
+
+        <div class="user-card">
+          <div class="status-dot"></div>
+          <span>Chris</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-area">
+      <div class="chat-header">
+        <h2>Global Chat</h2>
+      </div>
+
+      <div class="messages" id="messages">
+        <div class="message incoming">
+          Welcome to DIDSSS Chat.
+        </div>
+      </div>
+
+      <div class="message-bar">
+        <input type="text" id="messageInput" placeholder="Type a message...">
+        <button class="send-btn" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentUser = "";
+
+    function login() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username || !password) {
+        alert('Please enter a username and password.');
+        return;
+      }
+
+      currentUser = username;
+
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('chatApp').classList.remove('hidden');
+
+      const userList = document.getElementById('userList');
+      const userCard = document.createElement('div');
+      userCard.className = 'user-card';
+      userCard.innerHTML = `
+        <div class="status-dot"></div>
+        <span>${currentUser} (You)</span>
+      `;
+
+      userList.prepend(userCard);
     }
 
-    body {
-      background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
-      color: white
+    function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const messageText = input.value.trim();
+
+      if (!messageText) return;
+
+      const messages = document.getElementById('messages');
+
+      const message = document.createElement('div');
+      message.className = 'message outgoing';
+      message.textContent = messageText;
+
+      messages.appendChild(message);
+      messages.scrollTop = messages.scrollHeight;
+
+      input.value = '';
+    }
+
+    document.getElementById('messageInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>
